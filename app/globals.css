@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030712;
+  --foreground: #f9fafb;
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --border-glow: rgba(59, 130, 246, 0.15);
 }
 
 @theme inline {
@@ -12,15 +14,78 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151;
+}
+
+/* Custom animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.1), 0 0 5px rgba(59, 130, 246, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.25), 0 0 10px rgba(59, 130, 246, 0.15);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 4s infinite linear;
+}
+
+/* Grid overlay background */
+.grid-bg {
+  background-image: linear-gradient(rgba(17, 24, 39, 0.3) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(17, 24, 39, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: center center;
+}
+
+.glassmorphism {
+  background: rgba(17, 24, 39, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

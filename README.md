@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WebMetric: Website Performance & Core Vitals Analyzer
 
-## Getting Started
+**WebMetric** is an automatic website analysis application built with **Next.js** and **Tailwind CSS**. It evaluates target webpages for Core Web Vitals, SEO optimization state, Accessibility constraints, and Server response headers.
 
-First, run the development server:
+## 🚀 Key Features
 
+1. **Dual-Scan Analysis Engine**:
+   - **Local Crawler**: High-speed server-side HTML parser scraping DOM density, heading trees, semantic landmark usage, missing `alt` images tags, and security protocols in <1s.
+   - **Chrome PageSpeed Auditing**: Contacts Google's official PageSpeed Insights API in parallel to query real Chrome User Experience metrics (CrUX) and Lighthouse diagnostics.
+2. **Visual Core Web Vitals Dials**:
+   - Displays circles for Performance, Accessibility, Best Practices, and SEO.
+   - Outputs Web Vitals metrics including **LCP** (Largest Contentful Paint), **FCP** (First Contentful Paint), and **CLS** (Cumulative Layout Shift) with color-coded alerts (Good / Moderate / Poor).
+3. **Resilient Local Mock Simulation**:
+   - Includes automatic network throttling emulation fallback. If Google's external API is down or blocked, WebMetric calculates estimated loading times (TTFB, script weight payloads) and mock diagnostics based on DOM payload attributes, ensuring the UI is never empty.
+4. **Interactive Network Connection Throttler**:
+   - Test webpage performance under emulated connection baselines: Slow 3G, Fast 3G, High-speed 4G, and fiber Broadband.
+5. **SEO & Social Snippet Simulator**:
+   - Visual mock preview displaying how the website renders on Google search queries (SERP) and OpenGraph card feeds (Facebook/X headers).
+6. **Local Comparison Mode**:
+   - Saves historical inspections inside browser `localStorage`. Allows users to compare two scanned domains side-by-side.
+
+---
+
+## 🛠️ Project Structure
+
+- `app/api/analyze/route.ts`: Contains local scraping routines and Pagespeed endpoints parsing fallback logic.
+- `app/page.tsx`: Contains the React dashboard incorporating the tabs, progress indicators, gauges, simulators, and comparisons.
+- `app/globals.css`: Customized dark-themed gradients, progress variables, and keyframe animations.
+- `app/layout.tsx`: General next-app layout config.
+
+---
+
+## 💻 Developers Getting Started
+
+First, install the packages:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then launch the local workspace server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to view the application workspace.
